@@ -12,16 +12,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
-
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v1
+          enable-cache: true
 
       - name: Install lint dependencies
-        run: uv install --group lint
+        run: uv pip install . --extra lint
 
       - name: Run Ruff
         run: ruff check .
@@ -32,16 +30,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
+          enable-cache: true
 
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v1
-
-      - name: Install dev dependencies
-        run: uv install --group dev
+      - name: Install test dependencies
+        run: uv pip install . --extra dev
 
       - name: Run tests
         run: pytest
@@ -52,17 +48,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
+          enable-cache: true
 
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v1
+      - name: Install dev dependencies
+        run: uv pip install . --extra dev
 
-      - name: Install pre-commit and hooks
-        run: |
-          uv pip install pre-commit
-
-      - name: Run pre-commit on all files
+      - name: Run pre-commit
         run: pre-commit run --all-files
