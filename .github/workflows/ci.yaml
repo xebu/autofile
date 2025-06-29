@@ -21,7 +21,7 @@ jobs:
         uses: astral-sh/setup-uv@v1
 
       - name: Install lint dependencies
-        run: uv pip install --group lint .
+        run: uv pip install -G lint .
 
       - name: Run Ruff
         run: ruff check .
@@ -41,7 +41,7 @@ jobs:
         uses: astral-sh/setup-uv@v1
 
       - name: Install dev dependencies
-        run: uv pip install --group dev .
+        run: uv pip install -G dev .
 
       - name: Run tests
         run: pytest
