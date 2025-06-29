@@ -1,0 +1,27 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# PyCharm IDE settings
+.idea/
+
+# macOS
+.DS_Store
+
+# Python-specific
+*.log
+*.sqlite3
+*.db
+
+# Test/coverage tools
+.coverage
+.tox/
+.cache/
+.pytest_cache/
