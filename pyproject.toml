@@ -1,7 +1,7 @@
 [project]
 name = "autofile"
 version = "0.1.0"
-description = "Add your description here"
+description = "Automatically rename invoice PDFs based on content."
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = []
@@ -11,13 +11,16 @@ dev = [
     "commitizen>=4.8.3",
     "pre-commit>=4.2.0",
     "pytest>=8.4.1",
+    "pytest-cov>=6.2.1",
+    "pytest-randomly>=3.16.0",
+    "pytest-sugar>=1.0.0",
 ]
 lint = [
     "ruff>=0.12.1",
 ]
 
 [tool.pytest.ini_options]
-addopts = "-v -rP"
+addopts = "-v -rP --cov=autofile --cov-report=term-missing"
 pythonpath = ["."]
 testpaths = ["tests"]
 
@@ -26,3 +29,20 @@ name = "cz_conventional_commits"
 version = "0.0.0"
 tag_format = "v$version"
 version_files = ["pyproject.toml"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+exclude = [".venv", "build", "dist", "tests/fixtures"]
+extend-include = ["*.ipynb"]
+fix = true
+unsafe-fixes = false
+show-fixes = true
+preview = true
+select = ["E", "F", "I", "B"]
+
+[tool.ruff.isort]
+force-single-line = false
+known-first-party = ["autofile"]
+combine-as-imports = true
+lines-between-types = 1
