@@ -19,6 +19,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Create virtual environment
+        run: uv venv
+
       - name: Install lint dependencies
         run: uv pip install autofile[lint]
 
@@ -37,6 +40,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Create virtual environment
+        run: uv venv
+
       - name: Install dev dependencies
         run: uv pip install autofile[dev]
 
@@ -54,6 +60,9 @@ jobs:
         uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
+
+      - name: Create virtual environment
+        run: uv venv
 
       - name: Install lint dependencies
         run: uv pip install autofile[lint]
