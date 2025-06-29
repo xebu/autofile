@@ -1,0 +1,37 @@
+Invoice
+Invoice number TEST-INV-0002
+Date of issue Dec 02, 2024
+Date due Dec 10, 2024
+Vendor2 Ltd Bill to
+Redacted Name
+Redacted Street
+Redacted City
+ZZ99 9ZZ
+user@example.com
+
+Your last bill: £49.93
+This bill: £18.87
+ You paid in full — Thanks!
+We'll take this by Direct Debit on or after 10 Dec
+
+Monthly charges
+› Includes all monthly charges and recurring add-ons
+› See more details on page 3
+
+Your Plan and Add-ons
+125GB SIM Plan £25: £26.96 (before discount) £18.87
+Includes discount -£8.09
+
+Your usage
+Calls: 169:10 mins (Unlimited)
+Texts: 5 texts (Unlimited)
+Data: 145.00 GB (125 GB Plan + 20 GB Boost)
+
+Total charges £18.87
+Amount due £18.87
+(Includes applicable taxes. Not a VAT invoice.)
+
+Need help?
+Visit vendor.co.uk or use the My vendor app.
+
+Page 1 of 3
