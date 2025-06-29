@@ -1,6 +1,9 @@
 import re
 
 from datetime import datetime
+from pathlib import Path
+
+import pdfplumber
 
 
 def extract_invoice_details(text: str) -> dict[str, str | None]:
@@ -14,7 +17,6 @@ def extract_invoice_details(text: str) -> dict[str, str | None]:
     price_match = re.search(price_pattern, text)
     ref_match = re.search(reference_pattern, text)
 
-    # Convert date
     invoice_date = None
     if date_match:
         try:
@@ -39,3 +41,12 @@ def extract_invoice_details(text: str) -> dict[str, str | None]:
         "vendor": vendor,
         "reference": ref_match.group(1) if ref_match else None,
     }
+
+
+def extract_text_from_pdf(pdf_path: Path) -> str:
+    try:
+        with pdfplumber.open(pdf_path) as pdf:
+            return "\n".join(page.extract_text() or "" for page in pdf.pages)
+    except Exception as e:
+        # Optional: log or re-raise depending on your error handling approach
+        raise RuntimeError(f"Failed to extract text from {pdf_path}") from e
