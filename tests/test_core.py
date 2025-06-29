@@ -67,7 +67,7 @@ def test_extract_text_from_pdf(sample_pdf):
 
 
 def test_invoice_01_sample_text():
-    path = Path("tests/sample-data/invoice_01.txt")
+    path = Path("tests/sample-data/text/invoice_01.txt")
     text = path.read_text()
     assert "Invoice number TEST-INV-0001" in text
     assert "Amount due $24.00 USD" in text
@@ -75,7 +75,7 @@ def test_invoice_01_sample_text():
 
 
 def test_invoice_02_sample_text():
-    path = Path("tests/sample-data/invoice_02.txt")
+    path = Path("tests/sample-data/text/invoice_02.txt")
     text = path.read_text()
     assert "Invoice number TEST-INV-0002" in text
     assert "Amount due £18.87" in text
