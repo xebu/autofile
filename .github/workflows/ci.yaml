@@ -4,58 +4,59 @@ on:
   push:
     branches: [main]
   pull_request:
+    branches: [main]
 
 jobs:
   lint:
-    name: Lint with Ruff
+    name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Install uv
+      - name: Set up uv
         uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
-          enable-cache: true
 
       - name: Install lint dependencies
-        run: uv pip install . --extra lint
+        run: uv pip install autofile[lint]
 
       - name: Run Ruff
-        run: ruff check .
+        run: uv run ruff check .
 
   test:
-    name: Run tests
+    name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Install uv
+      - name: Set up uv
         uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
-          enable-cache: true
-
-      - name: Install test dependencies
-        run: uv pip install . --extra dev
-
-      - name: Run tests
-        run: pytest
-
-  pre-commit:
-    name: Pre-commit validation
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v6
-        with:
-          python-version: "3.12"
-          enable-cache: true
 
       - name: Install dev dependencies
-        run: uv pip install . --extra dev
+        run: uv pip install autofile[dev]
 
-      - name: Run pre-commit
-        run: pre-commit run --all-files
+      - name: Run tests
+        run: uv run pytest
+
+  format:
+    name: Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install lint dependencies
+        run: uv pip install autofile[lint]
+
+      - name: Run Ruff Format Check
+        run: uv run ruff format --check .
