@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - name: Create virtual environment
+        run: uv venv
+
+      - name: Install lint dependencies
+        run: uv pip install autofile[lint]
+
+      - name: Run Ruff
+        run: uv run ruff check .
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - name: Create virtual environment
+        run: uv venv
+
+      - name: Install dev dependencies
+        run: uv pip install autofile[dev]
+
+      - name: Run tests
+        run: uv run pytest
+
+  format:
+    name: Format Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+
+      - name: Create virtual environment
+        run: uv venv
+
+      - name: Install lint dependencies
+        run: uv pip install autofile[lint]
+
+      - name: Run Ruff Format Check
+        run: uv run ruff format --check .
